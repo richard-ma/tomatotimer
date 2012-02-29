@@ -80,10 +80,11 @@ Open your browser and type address: http://127.0.0.1:8000/tomatotimer/ . After t
 
 How to use?
 -------------------------------------------------------------------------------
-Tomato Timer is a web application using Python and Javascript.
+Tomato Timer is a web application made by Python and Javascript.
 
 Task Life Circle
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+``<pre>``
      +---- New Task 
      |
 +----+---> Activity Inventory -------+
@@ -98,7 +99,7 @@ Task Life Circle
      +---- Done <--------------------+
      |
      +---> **To Be Continue**
-
+``</pre>``
 
 Activity Inventory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
