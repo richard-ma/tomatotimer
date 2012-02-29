@@ -18,9 +18,9 @@ Pip Packages
 
 Database
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-SQLite 3 (You can use any other DBMS which the `Django-supported`.)
-
-.. Django-supported https://docs.djangoproject.com/en/1.3/ref/databases/
+SQLite 3 (You can use any other 
+`Django supported DBMS <https://docs.djangoproject.com/en/1.3/ref/databases/>`_
+.)
 
 Install
 -------------------------------------------------------------------------------
