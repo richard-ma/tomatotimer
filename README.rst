@@ -76,19 +76,40 @@ Run Server
 
 Use IT!
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
+Open your browser and type address: http://127.0.0.1:8000/tomatotimer/ . After that the main window will come out.
 
 How to use?
 -------------------------------------------------------------------------------
+Tomato Timer is a web application using Python and Javascript.
 
 Task Life Circle
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+:: 
+
+     +---- New Task 
+     |
++----+---> Activity Inventory -------+
+|                                    |
++----+---- Todo List <---------------+
+     |
+     +---> Doing Now ----+-----------+
+             ^           |           |
+             |           |           |
+             +-----------+           |
+                                     |
+     +---- Done <--------------------+
+     |
+     +---> **To Be Continue**
+
+
 Activity Inventory
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+You can add or remove task here. Tasks in Activity Inventory can be done in the future.
 
 Todo List
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+You can Put any task into current task area, then start the timer. There are tasks you have to finish today.
 
 
 Q&A
