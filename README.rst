@@ -84,9 +84,6 @@ Tomato Timer is a web application using Python and Javascript.
 
 Task Life Circle
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-:: 
-
      +---- New Task 
      |
 +----+---> Activity Inventory -------+
