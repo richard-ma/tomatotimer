@@ -35,30 +35,30 @@ Create a virtualenv
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 **Get Source Code**
 
- $mkdir tomatotimer
+ $ mkdir tomatotimer
 
 Then Unzip the zip package of tomatotimer into *tomatotimer* directory.
 
 Or Clone from Github.com
 
- $git clone git://github.com/richard-ma/tomatotimer.git tomatotimer
+ $ git clone git://github.com/richard-ma/tomatotimer.git tomatotimer
 
 **Change Dir**
 
- $cd tomatotimer
+ $ cd tomatotimer
 
 **Create Env**
 
- $virtualenv venv --distribute
+ $ virtualenv venv --distribute
 
 **Active Env**
 
- $source venv/bin/activate
+ $ source venv/bin/activate
 
 Install pip packages
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
- $pip install Django
+ $ pip install Django
 
 Other package will be installed automaticly.
 
@@ -68,11 +68,11 @@ Run Server
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 **Change Dir**
 
- $cd rtools
+ $ cd rtools
 
 **Start Server**
 
- $python manage.py runserver
+ $ python manage.py runserver
 
 Use IT!
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
