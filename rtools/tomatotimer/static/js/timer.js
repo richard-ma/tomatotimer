@@ -573,7 +573,7 @@ $(document).ready(function(){
     // Notification Bar
     //
     window.notify = function(msg, additionClass) {
-        var delayTimeout = 1.5; // delay time (second).
+        var delayTimeout = 1; // delay time (second).
         var notificationBar = $('#notificationBar');
         var notificationTitle = $("#notificationTitle");
         notificationTitle.text(msg);
@@ -755,7 +755,8 @@ $(document).ready(function(){
         trace('init');
 
         $(document).ajaxStart(function () {
-            notify('Loading...', 'alert-info');
+            // Add Loading Status
+            //notify('Loading...', 'alert-info');
         }).ajaxSuccess(function () {
             notify('Job Done.', 'alert-success');
         }).ajaxError(function () {
