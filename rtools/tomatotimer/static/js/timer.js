@@ -138,6 +138,7 @@ $(document).ready(function(){
         window._newid = null;
 
         $.ajax({
+            async: false,
             url: '/tomatotimer/task/create/',
             data: {
                 'title': task.title,
@@ -603,12 +604,11 @@ $(document).ready(function(){
         _task.title     = $('#iTaskTitle').val();
         _task.priority  = $('#iTaskPriority').val();
         _task.desc      = $('#iTaskDesc').val();
-        _task.taskType  = TASK_TYPE['AI'];
-
-        addTask(_task);
-        addToAIView(_task.id); // show
+        _task.taskType  = TASK_TYPE['AI']; // Add to AI Group
 
         ajaxTaskCreate(_task); // add to server
+        addTask(_task); // add to local storage
+        addToAIView(_task.id); // show
 
         // change view
         chAIViewGroup('AIListView');
@@ -647,7 +647,6 @@ $(document).ready(function(){
         trace('addToTodoViewBtn');
 
         removeFromAIView(id);
-        removeFromAI(id);
         addToTodo(id);
         addToTodoView(id);
     };
@@ -658,7 +657,6 @@ $(document).ready(function(){
         trace('backToAIViewBtn');
 
         removeFromTodoView(id);
-        removeFromTodo(id);
         addToAI(id);
         addToAIView(id);
     };
