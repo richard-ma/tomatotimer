@@ -7,6 +7,9 @@ v0.3x
 - v0.32 demo服务器调试
 - v0.33 修补xss漏洞
 - v0.34 加入ajax状态提醒ajax notification
+- v0.35
+  * Ajax请求异步执行，提升响应速度
+  * 添加README.rst文档
 
 v0.2x
 
