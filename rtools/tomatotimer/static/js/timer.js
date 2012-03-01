@@ -280,15 +280,41 @@ $(document).ready(function(){
         // right side
         var _rightSide = $('<span/>')
             .addClass('pull-right');
+        var _parentNode = $('<div/>').addClass('btn-group')
+            .appendTo(_rightSide);
+
+        $('<a/>').addClass('btn')
+            .text('Action')
+            .appendTo(_parentNode);
+        var _tmp = $('<a/>').addClass('btn dropdown-toggle')
+            .attr('data-toggle', 'dropdown')
+            .attr('href', '#')
+            .appendTo(_parentNode);
+        $('<span/>').addClass('caret')
+            .appendTo(_tmp);
+
+        _parentNode = $('<ul/>').addClass('dropdown-menu')
+            .appendTo(_rightSide);
+        _tmp = $('<li/>').appendTo(_parentNode);
+        $('<a/>').attr('href', '#')
+            .text('test0').appendTo(_tmp);
+        _tmp = $('<li/>').appendTo(_parentNode);
+        $('<a/>').attr('href', '#')
+            .text('test2').appendTo(_tmp);
+        _tmp = $('<li/>').appendTo(_parentNode);
+        $('<a/>').attr('href', '#')
+            .text('test3').appendTo(_tmp);
+            /*
         $('<span/>').addClass('label label-success')
-            .attr('onclick', 'doBtn(' +task.id+ ');')
+            .on('click', {id: task.id}, doBtn)
             .text('Do IT').appendTo(_rightSide);
         $('<span/>').addClass('label label-info')
-            .attr('onclick', 'backToAIViewBtn(' +task.id+ ');')
+            .on('click', {id: task.id}, backToAIViewBtn)
             .text('BACK').appendTo(_rightSide);
         $('<span/>').addClass('label label-important')
-            .attr('onclick', 'removeFromTodoBtn(' +task.id+ ');')
+            .on('click', {id: task.id}, removeFromTodoBtn)
             .text('REMOVE').appendTo(_rightSide);
+            */
 
         _tmp.append(_rightSide);
         _html.append(_tmp);
@@ -317,11 +343,11 @@ $(document).ready(function(){
         $('td:nth-child(2)', _html).append(_tmp);
         // td 3
         _tmp = $('<span/>').addClass('btn btn-danger')
-            .attr('onclick', 'removeFromAIBtn(' +task.id+ ');')
+            .on('click', {id: task.id}, removeFromAIBtn)
             .text('Remove');
         $('td:nth-child(3)', _html).append(_tmp);
         _tmp = $('<span/>').addClass('btn btn-info')
-            .attr('onclick', 'addToTodoViewBtn(' +task.id+ ');')
+            .on('click', {id: task.id}, addToTodoViewBtn)
             .text('Add Todo');
         $('td:nth-child(3)', _html).append(_tmp);
         
@@ -636,15 +662,19 @@ $(document).ready(function(){
         chAIViewGroup('AIAddView');
     });
 
-    window.removeFromAIBtn = function(id) {
+    window.removeFromAIBtn = function(event) {
         trace('removeFromAIBtn');
+
+        var id = event.data.id;
 
         removeFromAIView(id);
         removeTask(id);
     };
 
-    window.addToTodoViewBtn = function(id) {
+    window.addToTodoViewBtn = function(event) {
         trace('addToTodoViewBtn');
+
+        var id = event.data.id;
 
         removeFromAIView(id);
         addToTodo(id);
@@ -653,24 +683,29 @@ $(document).ready(function(){
 
     ///////////////////////////////////
     // TODO View
-    window.backToAIViewBtn = function(id) {
+    window.backToAIViewBtn = function(event) {
         trace('backToAIViewBtn');
+
+        var id = event.data.id;
 
         removeFromTodoView(id);
         addToAI(id);
         addToAIView(id);
     };
 
-    window.removeFromTodoBtn = function(id) {
+    window.removeFromTodoBtn = function(event) {
         trace('removeFromTodoBtn');
+
+        var id = event.data.id;
 
         removeFromTodoView(id);
         removeTask(id);
     };
 
-    window.doBtn = function(id) {
+    window.doBtn = function(event) {
         trace('doBtn');
 
+        var id = event.data.id;
         var _task = getTask(id);
 
         removeFromTodoView(id);
