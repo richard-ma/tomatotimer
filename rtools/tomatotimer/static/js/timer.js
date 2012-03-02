@@ -262,65 +262,50 @@ $(document).ready(function(){
     window.createTodoNode = function(task) {
         trace('createTodoNode', {'task-id': task.id});
 
-        var _html = $('<tr/>')
+        var _line = $('<tr/>')
             .attr('id', VIEW_TASK_ID_PREFIX+task.id);
-        var _tmp = null;
-        _tmp = $('<td/>');
+        var _col = $('<td/>').appendTo(_line);
 
         // left side
         $('<i/>').addClass('icon-chevron-right')
-            .appendTo(_tmp);
+            .appendTo(_col);
         $('<span/>').addClass('label')
             .addClass(PRIORITY_2_STYLE[task.priority])
             .text(PRIORITY_2_SHORT_TEXT[task.priority])
-            .appendTo(_tmp);
+            .appendTo(_col);
         $('<span/>').text(task.title)
-            .appendTo(_tmp);
+            .appendTo(_col);
         
         // right side
-        var _rightSide = $('<span/>')
-            .addClass('pull-right');
-        var _parentNode = $('<div/>').addClass('btn-group')
-            .appendTo(_rightSide);
-
+        var _ctlBtnGroup = $('<div/>').addClass('btn-group')
+            .addClass('pull-right') // right alignment
+            .appendTo(_col);
         $('<a/>').addClass('btn')
-            .text('Action')
-            .appendTo(_parentNode);
-        var _tmp = $('<a/>').addClass('btn dropdown-toggle')
+            .text('Do it !')
+            .on('click', {id: task.id}, doBtn)
+            .appendTo(_ctlBtnGroup);
+        var _listBtn = $('<a/>').addClass('btn dropdown-toggle')
             .attr('data-toggle', 'dropdown')
             .attr('href', '#')
-            .appendTo(_parentNode);
+            .appendTo(_ctlBtnGroup);
         $('<span/>').addClass('caret')
-            .appendTo(_tmp);
-
-        _parentNode = $('<ul/>').addClass('dropdown-menu')
-            .appendTo(_rightSide);
-        _tmp = $('<li/>').appendTo(_parentNode);
+            .appendTo(_listBtn);
+        var _btnList = $('<ul/>').addClass('dropdown-menu')
+            .appendTo(_ctlBtnGroup);
+        var _btnListLine = null;
+        _btnListLine = $('<li/>').appendTo(_btnList);
         $('<a/>').attr('href', '#')
-            .text('test0').appendTo(_tmp);
-        _tmp = $('<li/>').appendTo(_parentNode);
-        $('<a/>').attr('href', '#')
-            .text('test2').appendTo(_tmp);
-        _tmp = $('<li/>').appendTo(_parentNode);
-        $('<a/>').attr('href', '#')
-            .text('test3').appendTo(_tmp);
-            /*
-        $('<span/>').addClass('label label-success')
-            .on('click', {id: task.id}, doBtn)
-            .text('Do IT').appendTo(_rightSide);
-        $('<span/>').addClass('label label-info')
             .on('click', {id: task.id}, backToAIViewBtn)
-            .text('BACK').appendTo(_rightSide);
-        $('<span/>').addClass('label label-important')
+            .text('Back')
+            .appendTo(_btnListLine);
+        _btnListLine = $('<li/>').appendTo(_btnList);
+        $('<a/>').attr('href', '#')
             .on('click', {id: task.id}, removeFromTodoBtn)
-            .text('REMOVE').appendTo(_rightSide);
-            */
-
-        _tmp.append(_rightSide);
-        _html.append(_tmp);
+            .text('Remove')
+            .appendTo(_btnListLine);
 
         // add node to table
-        $('#todoListViewTableBody').prepend(_html);
+        $('#todoListViewTableBody').prepend(_line);
     };
 
     window.createAINode = function(task) {
@@ -342,14 +327,26 @@ $(document).ready(function(){
             .text(PRIORITY_2_TEXT[task.priority]);
         $('td:nth-child(2)', _html).append(_tmp);
         // td 3
-        _tmp = $('<span/>').addClass('btn btn-danger')
-            .on('click', {id: task.id}, removeFromAIBtn)
-            .text('Remove');
-        $('td:nth-child(3)', _html).append(_tmp);
-        _tmp = $('<span/>').addClass('btn btn-info')
+        var _ctlBtnGroup = $('<div/>').addClass('btn-group');
+        $('<a/>').addClass('btn')
+            .text('Add to Todo >')
             .on('click', {id: task.id}, addToTodoViewBtn)
-            .text('Add Todo');
-        $('td:nth-child(3)', _html).append(_tmp);
+            .appendTo(_ctlBtnGroup);
+        var _listBtn = $('<a/>').addClass('btn dropdown-toggle')
+            .attr('data-toggle', 'dropdown')
+            .attr('href', '#')
+            .appendTo(_ctlBtnGroup);
+        $('<span/>').addClass('caret')
+            .appendTo(_listBtn);
+        var _btnList = $('<ul/>').addClass('dropdown-menu')
+            .appendTo(_ctlBtnGroup);
+        var _btnListLine = null;
+        _btnListLine = $('<li/>').appendTo(_btnList);
+        $('<a/>').attr('href', '#')
+            .on('click', {id: task.id}, removeFromAIBtn)
+            .text('Remove')
+            .appendTo(_btnListLine);
+        $('td:nth-child(3)', _html).append(_ctlBtnGroup);
         
         // add node to table
         $('#AIListViewTableBody').prepend(_html);
