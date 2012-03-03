@@ -41,17 +41,17 @@ $(document).ready(function(){
 
 	var timers = [
 // RELEASE
-		{ name: "tomato", title: "Tomato", time: 1500 },
-		{ name: "long_break", title: "Long Break", time: 900 },
-		{ name: "short_break", title: "Short Break", time: 300 }
+		{ name: "tomato", title: "Pomodoro Task", time: 5 },
+		{ name: "long_break", title: "Long break", time: 3 },
+		{ name: "short_break", title: "Short break", time: 1 }
+//		{ name: "tomato", title: "Tomato", time: 1500 },
+//		{ name: "long_break", title: "Long Break", time: 900 },
+//		{ name: "short_break", title: "Short Break", time: 300 }
 
 // DEBUG
 //		{ name: "tomato", title: "Pomodoro Task", time: 25 },
 //		{ name: "long_break", title: "Long break", time: 15 },
 //		{ name: "short_break", title: "Short break", time: 5 }
-//		{ name: "tomato", title: "Pomodoro Task", time: 5 },
-//		{ name: "long_break", title: "Long break", time: 3 },
-//		{ name: "short_break", title: "Short break", time: 1 }
 	];
 
     //
@@ -64,7 +64,11 @@ $(document).ready(function(){
         priority:       'ITP-LOW',
         tomato:         0,
         interrupution:  0,
-        taskType:       TASK_TYPE['UNDEFINED']
+        taskType:       TASK_TYPE['UNDEFINED'],
+        startTime:      null,
+        endTime:        null,
+        tomatoCnt:      0,
+        interruptionCnt:0
     };
 
     //
@@ -327,7 +331,7 @@ $(document).ready(function(){
             .text(PRIORITY_2_TEXT[task.priority]);
         $('td:nth-child(2)', _html).append(_tmp);
         // td 3
-        var _ctlBtnGroup = $('<div/>').addClass('btn-group');
+        var _ctlBtnGroup = $('<div/>').addClass('btn-group pull-right');
         $('<a/>').addClass('btn')
             .text('Add to Todo >')
             .on('click', {id: task.id}, addToTodoViewBtn)
@@ -444,6 +448,8 @@ $(document).ready(function(){
 
 		var timer = getTimer(name);
 		timerStart = new Date();
+        // update cuttent task start time
+        g_current_task.startTime = timerStart;
 		timerName = name;
 
 		$('#currentTime').html(formatTimeSec(timer.time));
@@ -478,7 +484,7 @@ $(document).ready(function(){
 		}
 		$('#currentTime').html(formatTimeSec(remTime));
 
-		console.log("onTick: " + (new Date()) + " - remTime: " + remTime);
+		//console.log("onTick: " + (new Date()) + " - remTime: " + remTime);
 
 		if (remTime > 0) {
 			timeout = setTimeout("onTick()", 1000);
@@ -493,6 +499,9 @@ $(document).ready(function(){
 		finalTaskMillis = -1;
 
 		timerFinish = new Date();
+        // update current task end time & increase tomato counter
+        g_current_task.endTime = timerFinish;
+        g_current_task.tomatoCnt++;
 		if ( timerName == 'tomato' ) {
             initButtonGroup('breakButtonGroup');
 		} else {
@@ -744,11 +753,14 @@ $(document).ready(function(){
 		now = new Date();
 		console.log("now: " + now);
 		if ( timerName == 'tomato' ) {
+            // task is interrupted
 			console.log("timerStart : " + timerStart);
 
 			duration = Math.round((now - timerStart)/1000);
 			console.log("duration: " + duration);
 
+            // update current task interruptionCnt
+            g_current_task.interruptionCnt++;
 		} else {
 			console.log("timerFinish: " + timerFinish);
 			console.log("timerStart : " + timerStart);
